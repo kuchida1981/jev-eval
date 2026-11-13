@@ -200,3 +200,64 @@ def evaluate_candidates(board, player, legal, use_exact_endgame=True):
     depth = _depth_for_branching(len(legal))
     scores = {move: evaluate_move(board, player, move[0], move[1], depth=depth) for move in legal}
     return scores, depth
+
+
+# ---------------------------------------------------------------------------
+# 方針B: 「スウィンドル狙い」(劣勢時に相手のミスを誘発しやすい手を選ぶ)
+#
+# 「勝敗だけを正解基準にすると常に期待値最大化(方針A)に収束してしまう」という
+# 問題を避けるため、方針Bは「相手が完璧に指せば方針Aと大差ないが、相手が間違えると
+# 大きく得をする」手を選ぶ。これは相手が不完全な場合にのみ意味を持つ、検証可能な
+# 仮説になっている(詳しくは検証メモの「次回の課題案」節を参照)。
+# ---------------------------------------------------------------------------
+
+SWINDLE_DEPTH = 2  # 相手の応手を評価する際の先読み深さ(速度とのトレードオフ)
+SWINDLE_TOP_K = 3  # 自分の評価値(方針A基準)上位何件に絞ってから選ぶか
+
+
+def opponent_reply_scores(board, player, r, c, depth=SWINDLE_DEPTH):
+    """player が (r, c) に打った直後の局面で、相手が取りうる全応手それぞれについて、
+    その応手の後の player 視点のスコアを返す(リストの各要素が相手の1つの応手に対応)。"""
+    opp = engine.opponent(player)
+    sim = engine.copy_board(board)
+    engine.apply_move(sim, player, r, c)
+    opp_legal = engine.legal_moves(sim, opp)
+    if not opp_legal:
+        # 相手は合法手なし(パス): 自分の番が続くとみなして評価する。
+        return [negamax(sim, player, depth, NEG_INF, POS_INF)]
+    scores = []
+    for (rr, cc) in opp_legal:
+        sim2 = engine.copy_board(sim)
+        engine.apply_move(sim2, opp, rr, cc)
+        scores.append(negamax(sim2, player, depth, NEG_INF, POS_INF))
+    return scores
+
+
+def evaluate_move_swindle(board, player, r, c, depth=SWINDLE_DEPTH):
+    """手 (r, c) の「スウィンドル指標」: 相手の応手候補全体の平均的な結果と、
+    相手が最善を尽くした場合(=方針Aの評価値と同義)の結果との差。
+
+    値が大きいほど、「相手が完璧なら方針Aと大差ないが、相手が最善を外すと
+    こちらが大きく得をする」手であることを示す。相手が常に最善を尽くす場合は
+    この差はゼロに近づくため、方針Bは完璧な相手には方針Aを上回れない設計になっている。
+    """
+    reply_scores = opponent_reply_scores(board, player, r, c, depth=depth)
+    worst_for_us = min(reply_scores)
+    mean_for_us = sum(reply_scores) / len(reply_scores)
+    return mean_for_us - worst_for_us
+
+
+def choose_policy_b_move(board, player, legal, equity_scores, top_k=SWINDLE_TOP_K, depth=SWINDLE_DEPTH):
+    """方針B(スウィンドル狙い)の着手を選ぶ。
+
+    方針A(evaluate_candidatesのargmax)による評価値で上位 top_k 件に候補を絞り、
+    その中からスウィンドル指標が最大の手を選ぶ。「明らかな悪手は避けつつ、相手の
+    ミスを誘発しやすい手を優先する」という設計。
+
+    戻り値: (選んだ手 (r, c), {手: スウィンドル指標} のうち計算した分)
+    """
+    ranked = sorted(legal, key=lambda mv: equity_scores[mv], reverse=True)
+    pool = ranked[: min(top_k, len(ranked))]
+    swindle_scores = {mv: evaluate_move_swindle(board, player, mv[0], mv[1], depth=depth) for mv in pool}
+    best_mv = max(pool, key=lambda mv: swindle_scores[mv])
+    return best_mv, swindle_scores
