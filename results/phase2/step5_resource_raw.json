@@ -1,0 +1,185 @@
+{
+  "cold_warm": [
+    {
+      "model": "nimble",
+      "cold_latency_s": 5.492171542020515,
+      "warm_latency_s": 0.16066375002264977,
+      "cold_ok": true,
+      "warm_ok": true
+    },
+    {
+      "model": "tev1",
+      "cold_latency_s": 3.375930500216782,
+      "warm_latency_s": 0.10233625001274049,
+      "cold_ok": true,
+      "warm_ok": true
+    },
+    {
+      "model": "tev1:0.8b",
+      "cold_latency_s": 1.1223000418394804,
+      "warm_latency_s": 0.04537937487475574,
+      "cold_ok": true,
+      "warm_ok": true
+    }
+  ],
+  "question_count": [
+    {
+      "model": "nimble",
+      "n_questions": 1,
+      "latency_s": 4.598655499983579,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "nimble",
+      "n_questions": 5,
+      "latency_s": 0.24144050013273954,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "nimble",
+      "n_questions": 20,
+      "latency_s": 1.5308866661507636,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "nimble",
+      "n_questions": 64,
+      "latency_s": 9.16627037501894,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1",
+      "n_questions": 1,
+      "latency_s": 3.297959291143343,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1",
+      "n_questions": 5,
+      "latency_s": 0.11345204198732972,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1",
+      "n_questions": 20,
+      "latency_s": 0.13653320795856416,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1",
+      "n_questions": 64,
+      "latency_s": 0.2669068749528378,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1:0.8b",
+      "n_questions": 1,
+      "latency_s": 1.1017916249111295,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1:0.8b",
+      "n_questions": 5,
+      "latency_s": 0.07853495795279741,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1:0.8b",
+      "n_questions": 20,
+      "latency_s": 0.0695520828012377,
+      "ok": true,
+      "error": null
+    },
+    {
+      "model": "tev1:0.8b",
+      "n_questions": 64,
+      "latency_s": 0.11875045788474381,
+      "ok": true,
+      "error": null
+    }
+  ],
+  "concurrency": [
+    {
+      "model": "nimble",
+      "concurrency": 1,
+      "n_requests": 3,
+      "wall_s": 9.80077033303678,
+      "n_ok": 3,
+      "throughput_rps": 0.30609838798971695
+    },
+    {
+      "model": "nimble",
+      "concurrency": 4,
+      "n_requests": 12,
+      "wall_s": 1.8104021248873323,
+      "n_ok": 12,
+      "throughput_rps": 6.6283616413379995
+    },
+    {
+      "model": "nimble",
+      "concurrency": 8,
+      "n_requests": 24,
+      "wall_s": 3.6039682088885456,
+      "n_ok": 24,
+      "throughput_rps": 6.6593262229140295
+    },
+    {
+      "model": "tev1",
+      "concurrency": 1,
+      "n_requests": 3,
+      "wall_s": 3.580533792031929,
+      "n_ok": 3,
+      "throughput_rps": 0.8378638980244116
+    },
+    {
+      "model": "tev1",
+      "concurrency": 4,
+      "n_requests": 12,
+      "wall_s": 1.1001398330554366,
+      "n_ok": 12,
+      "throughput_rps": 10.907704311253053
+    },
+    {
+      "model": "tev1",
+      "concurrency": 8,
+      "n_requests": 24,
+      "wall_s": 2.1879429589025676,
+      "n_ok": 24,
+      "throughput_rps": 10.969207356318815
+    },
+    {
+      "model": "tev1:0.8b",
+      "concurrency": 1,
+      "n_requests": 3,
+      "wall_s": 1.2380406251177192,
+      "n_ok": 3,
+      "throughput_rps": 2.4231838108824135
+    },
+    {
+      "model": "tev1:0.8b",
+      "concurrency": 4,
+      "n_requests": 12,
+      "wall_s": 0.39034050004556775,
+      "n_ok": 12,
+      "throughput_rps": 30.742390294112802
+    },
+    {
+      "model": "tev1:0.8b",
+      "concurrency": 8,
+      "n_requests": 24,
+      "wall_s": 0.7543061249889433,
+      "n_ok": 24,
+      "throughput_rps": 31.817320852792747
+    }
+  ]
+}

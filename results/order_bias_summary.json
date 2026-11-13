@@ -1,0 +1,188 @@
+{
+  "overall": {
+    "n": 222,
+    "flip_rate": 0.05855855855855856,
+    "acc_fwd": 0.8018018018018018,
+    "acc_rev": 0.8153153153153153,
+    "b": 5,
+    "c": 8,
+    "chi2": 0.3076923076923077,
+    "p": 0.5790997419539188
+  },
+  "by_type": {
+    "choice": {
+      "n": 96,
+      "flip_rate": 0.10416666666666667,
+      "acc_fwd": 0.78125,
+      "acc_rev": 0.8229166666666666,
+      "b": 3,
+      "c": 7,
+      "chi2": 0.9,
+      "p": 0.34278171114790873
+    },
+    "noul": {
+      "n": 126,
+      "flip_rate": 0.023809523809523808,
+      "acc_fwd": 0.8174603174603174,
+      "acc_rev": 0.8095238095238095,
+      "b": 2,
+      "c": 1,
+      "chi2": 0.0,
+      "p": 1.0
+    }
+  },
+  "by_model": {
+    "nimble": {
+      "n": 74,
+      "flip_rate": 0.06756756756756757,
+      "acc_fwd": 0.8108108108108109,
+      "acc_rev": 0.8513513513513513,
+      "b": 1,
+      "c": 4,
+      "chi2": 0.8,
+      "p": 0.37109336952269756
+    },
+    "tev1": {
+      "n": 74,
+      "flip_rate": 0.04054054054054054,
+      "acc_fwd": 0.8108108108108109,
+      "acc_rev": 0.7972972972972973,
+      "b": 2,
+      "c": 1,
+      "chi2": 0.0,
+      "p": 1.0
+    },
+    "tev1:0.8b": {
+      "n": 74,
+      "flip_rate": 0.06756756756756757,
+      "acc_fwd": 0.7837837837837838,
+      "acc_rev": 0.7972972972972973,
+      "b": 2,
+      "c": 3,
+      "chi2": 0.0,
+      "p": 1.0
+    }
+  },
+  "flipped_examples": [
+    {
+      "item_id": "ticket_classification-ja-medium-001",
+      "qid": "refund_requested",
+      "model": "tev1:0.8b",
+      "orig_type": "noul",
+      "fwd_choice": "no",
+      "rev_choice": "yes",
+      "gold": "no",
+      "flipped": true,
+      "fwd_correct": true,
+      "rev_correct": false
+    },
+    {
+      "item_id": "ticket_classification-en-medium-004",
+      "qid": "team",
+      "model": "tev1",
+      "orig_type": "choice",
+      "fwd_choice": "technical",
+      "rev_choice": "other",
+      "gold": "technical",
+      "flipped": true,
+      "fwd_correct": true,
+      "rev_correct": false
+    },
+    {
+      "item_id": "model_routing-ja-easy-012",
+      "qid": "route",
+      "model": "tev1:0.8b",
+      "orig_type": "choice",
+      "fwd_choice": "large_accurate",
+      "rev_choice": "small_fast",
+      "gold": "small_fast",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    },
+    {
+      "item_id": "model_routing-ja-medium-013",
+      "qid": "route",
+      "model": "nimble",
+      "orig_type": "choice",
+      "fwd_choice": "human_escalation",
+      "rev_choice": "large_accurate",
+      "gold": "large_accurate",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    },
+    {
+      "item_id": "model_routing-ja-hard-014",
+      "qid": "route",
+      "model": "nimble",
+      "orig_type": "choice",
+      "fwd_choice": "large_accurate",
+      "rev_choice": "human_escalation",
+      "gold": "human_escalation",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    },
+    {
+      "item_id": "model_routing-en-easy-015",
+      "qid": "route",
+      "model": "tev1:0.8b",
+      "orig_type": "choice",
+      "fwd_choice": "large_accurate",
+      "rev_choice": "small_fast",
+      "gold": "small_fast",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    },
+    {
+      "item_id": "model_routing-en-medium-016",
+      "qid": "route",
+      "model": "tev1",
+      "orig_type": "choice",
+      "fwd_choice": "human_escalation",
+      "rev_choice": "large_accurate",
+      "gold": "large_accurate",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    },
+    {
+      "item_id": "model_routing-en-hard-017",
+      "qid": "route",
+      "model": "nimble",
+      "orig_type": "choice",
+      "fwd_choice": "small_fast",
+      "rev_choice": "human_escalation",
+      "gold": "human_escalation",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    },
+    {
+      "item_id": "model_routing-en-hard-017",
+      "qid": "route",
+      "model": "tev1:0.8b",
+      "orig_type": "choice",
+      "fwd_choice": "human_escalation",
+      "rev_choice": "small_fast",
+      "gold": "human_escalation",
+      "flipped": true,
+      "fwd_correct": true,
+      "rev_correct": false
+    },
+    {
+      "item_id": "moderation-en-medium-022",
+      "qid": "violates_policy",
+      "model": "nimble",
+      "orig_type": "noul",
+      "fwd_choice": "no",
+      "rev_choice": "yes",
+      "gold": "yes",
+      "flipped": true,
+      "fwd_correct": false,
+      "rev_correct": true
+    }
+  ]
+}

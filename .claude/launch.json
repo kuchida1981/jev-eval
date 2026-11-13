@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "othello",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": ["othello/app.py"],
+      "port": 5050
+    }
+  ]
+}
